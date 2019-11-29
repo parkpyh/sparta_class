@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script>
+		
+		let num = 0;
+		function hey(){
+			num += 1;
+			if (num < 5) {
+				alert("HI! " + num +"번 누르셨네요!");
+			} else {
+				alert('이제~ 그만~');
+			}
+		}
+		
+		let a = ['사과','감','감','배','포도','포도','딸기','포도','감','수박','딸기']
+
+		function count_fruit(name){
+			let count = 0;
+			for (let i = 0; i < a.length; i++) {
+				if (a[i] == name) {
+					count = count + 1;
+				}
+			}
+			console.log(count);
+		}
+	</script>
+
+	<style>
+		body {
+			background-color: #000;
+		}
+		.price {
+			font-size: 12px;
+			margin: 10px;
+		}
+		.card-title {
+			font-size: 30px;
+			font-weight: bolder;
+			margin: 0 0 10px 0;
+		}
+		.explain {
+			font-size: 15px;
+			margin: 10px;
+		}
+		.radius {
+			border-radius: 5px;
+			margin: 10px;
+			padding: 5px 100px 5px 0;
+		}
+		.select {
+			border-radius: 5px;
+			margin: 10px;
+			padding: 5px 242px 5px 0;
+		}
+		.wrap {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;		
+		}
+		.btn {
+			margin: 20px 0 10px 0;
+			width: 35%;
+			border:1px solid #000;
+		}
+		.card-title {
+			margin: 50px 0 0 0;
+		}
+		.image {
+			 border:3px solid #000;
+			 padding: 0px;
+			 margin-top: 20px
+		}
+
+	</style>
+
+	<title>onepage_mall</title>
+		
+</head>
+<body>
+	<div class="wrap">
+		<div id="cards-box" class="card" style="width: 900px;">
+			<div align="center">
+		 		<img class="image" src="http://www.yagooshop.com/shop/data/goods/1425614166756m0.jpg" class="card-img-top" alt="..." style="width: 700px; height: 450px;">
+			</div>
+		
+			<div class="card-body">
+				<a class="card-title">상품제목</a>
+				<a class="price">가격: 400,000월 / 개</a>
+			  
+				<div class="explain">
+			    	이 상품으로 말할 것 같으면 2016년 심판생활을 시작할때 구매해서 지금까지 계속 사용하고 있는 제품으로, 심판장비가 일제장비가 많은데 반해 몇 안되는 국내제품이며 KBO에 납품되고있지만 실제 KBO심판들은 잘 안쓰는 장비이다. 보시다시피 목부분에 빈 공간이 많아서 엘리트 및 프로선수들의 120km가 넘는 공을 맞으면 쇠골뼈가 나갈지도 모른다. 하여 개개인이 보강작업을 해 주어야 안전한 주심을 볼 수 있음을 명심하자.
+				</div>
+				<h3 class="card-title">주문하기</h3>
+				<div>
+			    	주문자 성함: <input class="radius" type="name" name="">
+				</div>
+				<div>
+			    	수량: <a>&emsp;&emsp;&emsp;</a> <select class="select" type="" name="">
+			    			<OPTION VALUE=1 SELECTED>0개</OPTION>
+			    			<OPTION VALUE=1>1개</OPTION>
+					        <OPTION VALUE=2>2개</OPTION>
+					        <OPTION VALUE=3>3개</OPTION>
+					        <OPTION VALUE=4>4개</OPTION>
+			    		 </select>
+				</div>
+				<div>
+			    	주소: <a>&emsp;&emsp;&emsp;</a> <input class="radius" type="text" name="">
+				</div>
+				<div>
+			    	전화번호: <a>&emsp;&nbsp;</a><input class="radius" type="" name="">
+				</div>
+				<div align="center">
+			 		<a href="#" class="btn" onclick="hey(); count_fruit('감')">주문하기</a>
+			 	</div>
+			 	<!--
+			 	<div id="posting-box" class="form-post">
+				  <form>
+				    <div class="form-group">
+				      <label for="exampleFormControlInput1">아티클 URL</label>
+				      <input id="posting-url" class="form-control" placeholder="">
+				    </div>
+				    <div class="form-group">
+				      <label for="exampleFormControlTextarea1">간단 코멘트</label>
+				      <input id="posting-comment" class="form-control" placeholder="">
+				    </div>
+				    <button id="btn-posting-box" onclick="posting()" type="button" class="btn btn-primary">기사저장</button>
+				  </form>
+				</div>
+				-->
+			 </div>
+		</div>
+	</div>
+</body>
+</html>
