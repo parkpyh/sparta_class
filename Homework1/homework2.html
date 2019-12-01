@@ -8,38 +8,134 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
     <style type="text/css">
+		* {
+			font-family: 'Stylish', sans-serif;
+		}
+
 		.wrap {
+			width: 500px;
+			margin: auto;
+		}
+		.card {
 			width: 500px;
 			margin: auto;
 		}
 		.img {
 			width: 500px;
 			height: 300px;
-		}    	
+			/*transform:scale(1.1); */
+			overflow: hidden;  /* div 박스 사이즈를 넘어간 값은 숨긴다*/
+		}
 
     </style>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script type="text/javascript" >
+		function order() {
+			$("#orders").empty();
+			$.ajax({
+			  type: "GET",
+			  url: "http://spartacodingclub.shop/order",
+			  data: {},
+			  success: function(response){
+			  	let result = response["result"]
+				let orders = response["orders"];
+				for (var i = 0; i < orders.length-1; i++) {
+					let name = orders[i]["name"];
+					let count = orders[i]["count"];
+					let address = orders[i]["address"];
+					let phone = orders[i]["phone"];
+
+					$("#orders").append('<tr>\
+									      <th scope="row">'+name+'</th>\
+									      <td>'+count+'</td>\
+									      <td>'+address+'</td>\
+									      <td>'+phone+'</td>\
+									    </tr>');
+				}
+				
+			  }
+			})
+		}
+	</script>
 
     <title>나홀로 쇼핑몰</title>
   </head>
   <body>
     
 	<div class="wrap">
-	    <div class="card">
+	    <div class="card" style="border: none;">
 		  <img class="img" src="https://www.conscious-skincare.com/wp-content/uploads/2016/02/glc-candle-lit-with-new-gift-box.jpg" class="card-img-top" alt="...">
 		  <div class="card-body">
-		    <h5 class="card-title">양초를 팝니다</h5>
-		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-		    <a href="#" class="btn btn-primary" onclick="order()">주문하기</a>
+		    <h1 class="card-title">양초를 팝니다</h1>
+		    <p class="card-text">이 양초는 사실 특별한 힘을 가지고 있어요. 양초를 켜고 소원을 빌면 짜자잔 뭐든지 이뤄지게 된답니다. 하나 사가세요! 대나무 향이 아주 좋아요</p>
+
+			<div class="input-group input-group-sm mb-3">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="inputGroup-sizing-sm">주문자 이름</span>
+			  </div>
+			  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+			</div>
+
+			<div class="input-group mb-3">
+			  <div class="input-group-prepend">
+			    <label class="input-group-text" for="inputGroupSelect01" id="inputGroup-sizing-sm" style="font-size: 14px">수량</label>
+			  </div>
+			  <select class="custom-select" id="inputGroupSelect01" style="font-size: 14px">
+			    <option selected>-- 수량을 선택하세요 --</option>
+			    <option value="1">1</option>
+			    <option value="2">2</option>
+			    <option value="3">3</option>
+			  </select>
+			</div>	
+
+			<div class="input-group input-group-sm mb-3">
+			  <div class="input-group-prepend" >
+			    <span class="input-group-text" id="inputGroup-sizing-sm" style="padding: 4px 12px 4px 12px;">주소</span>
+			  </div>
+			  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="padding: auto;">
+			</div>
+
+			<div class="input-group input-group-sm mb-3">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="inputGroup-sizing-sm">전화번호</span>
+			  </div>
+			  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+			</div>
+			<div style="margin: 0 0 100px 0">
+				<div style="margin: auto; width: 20%;">
+			    	<a href="#" class="btn btn-primary" onclick="order()">주문하기</a>
+				</div>
+			</div>
+			<div>
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">이름</th>
+				      <th scope="col">수량</th>
+				      <th scope="col">주소</th>
+				      <th scope="col">전화번호</th>
+				    </tr>
+				  </thead>
+				  <tbody id="orders">
+				  </tbody>
+				</table>
+			</div>
 		  </div>
 		</div>
 	</div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript"></script>
+
+
   </body>
 </html>
