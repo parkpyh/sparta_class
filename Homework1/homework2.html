@@ -37,11 +37,38 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 	<script type="text/javascript" >
-		function order() {
+
+			function order() {
+				let name = $("#input_name").val();
+				let count = $("#input_count").val();
+				let address = $("#input_address").val();
+				let phone = $("#input_phone").val();
+				//let a = '{name_give: ' + name +', count_give: '+count+', address_give: '+address+', phone_give: '+phone+'}'
+
+				$.ajax(
+					   {
+					        url: "http://spartacodingclub.shop/order",
+					        type: "POST",
+					        dataType: "jsonp",
+					        data: { name_give:name, count_give:count, address_give:address, phone_give:phone},
+					        contentType: 'application/json',
+					        async: false,
+					        success: function(msg) {
+					            if (msg == "success") {
+					            	alert(msg);
+					            }
+					            //console.log(msg);
+					        }
+					    }
+					);
+			
+			}
+
+
+		$(document).ready(function() {
 			$("#orders").empty();
 			$.ajax({
 			  type: "GET",
@@ -57,16 +84,17 @@
 					let phone = orders[i]["phone"];
 
 					$("#orders").append('<tr>\
-									      <th scope="row">'+name+'</th>\
-									      <td>'+count+'</td>\
-									      <td>'+address+'</td>\
-									      <td>'+phone+'</td>\
-									    </tr>');
+											     <th scope="row">'+name+'</th>\
+											     <td>'+count+'</td>\
+											     <td>'+address+'</td>\
+											     <td>'+phone+'</td>\
+											   </tr>');
+
 				}
 				
 			  }
 			})
-		}
+		})
 	</script>
 
     <title>나홀로 쇼핑몰</title>
@@ -82,16 +110,16 @@
 
 			<div class="input-group input-group-sm mb-3">
 			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="inputGroup-sizing-sm">주문자 이름</span>
+			    <span class="input-group-text" >주문자 이름</span>
 			  </div>
-			  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+			  <input id="input_name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 			</div>
 
 			<div class="input-group mb-3">
 			  <div class="input-group-prepend">
 			    <label class="input-group-text" for="inputGroupSelect01" id="inputGroup-sizing-sm" style="font-size: 14px">수량</label>
 			  </div>
-			  <select class="custom-select" id="inputGroupSelect01" style="font-size: 14px">
+			  <select class="custom-select" id="input_count" style="font-size: 14px">
 			    <option selected>-- 수량을 선택하세요 --</option>
 			    <option value="1">1</option>
 			    <option value="2">2</option>
@@ -101,20 +129,20 @@
 
 			<div class="input-group input-group-sm mb-3">
 			  <div class="input-group-prepend" >
-			    <span class="input-group-text" id="inputGroup-sizing-sm" style="padding: 4px 12px 4px 12px;">주소</span>
+			    <span class="input-group-text" style="padding: 4px 12px 4px 12px;">주소</span>
 			  </div>
-			  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="padding: auto;">
+			  <input id="input_address" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="padding: auto;">
 			</div>
 
 			<div class="input-group input-group-sm mb-3">
 			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="inputGroup-sizing-sm">전화번호</span>
+			    <span class="input-group-text">전화번호</span>
 			  </div>
-			  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+			  <input id="input_phone" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 			</div>
 			<div style="margin: 0 0 100px 0">
 				<div style="margin: auto; width: 20%;">
-			    	<a href="#" class="btn btn-primary" onclick="order()">주문하기</a>
+			    	<a href="#" class="btn btn-primary" onclick="order();">주문하기</a>
 				</div>
 			</div>
 			<div>
