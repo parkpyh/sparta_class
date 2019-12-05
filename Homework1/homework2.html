@@ -34,39 +34,14 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 	<script type="text/javascript" >
-
-			function order() {
-				let name = $("#input_name").val();
-				let count = $("#input_count").val();
-				let address = $("#input_address").val();
-				let phone = $("#input_phone").val();
-				//let a = '{name_give: ' + name +', count_give: '+count+', address_give: '+address+', phone_give: '+phone+'}'
-
-				$.ajax(
-					   {
-					        url: "http://spartacodingclub.shop/order",
-					        type: "POST",
-					        dataType: "jsonp",
-					        data: { name_give:name, count_give:count, address_give:address, phone_give:phone},
-					        contentType: 'application/json',
-					        async: false,
-					        success: function(msg) {
-					            if (msg == "success") {
-					            	alert(msg);
-					            }
-					            //console.log(msg);
-					        }
-					    }
-					);
-			
-			}
-
 
 		$(document).ready(function() {
 			$("#orders").empty();
@@ -77,7 +52,7 @@
 			  success: function(response){
 			  	let result = response["result"]
 				let orders = response["orders"];
-				for (var i = 0; i < orders.length-1; i++) {
+				for (var i = 0; i < orders.length; i++) {
 					let name = orders[i]["name"];
 					let count = orders[i]["count"];
 					let address = orders[i]["address"];
@@ -95,6 +70,40 @@
 			  }
 			})
 		})
+
+
+			function order() {
+				let name = $("#input_name").val();
+				let count = $("#input_count").val();
+				let address = $("#input_address").val();
+				let phone = $("#input_phone").val();
+				alert("주문완료");
+			}
+				//let a = '{name_give: ' + name +', count_give: '+count+', address_give: '+address+', phone_give: '+phone+'}'
+
+/*				$.ajax({
+				        type: "POST",
+				        url: "http://spartacodingclub.shop/order",
+				        dataType: "json",
+				        //data: a,
+				        data: { name_give:name, count_give:count, address_give:address, phone_give:phone },
+				        contentType: 'application/json',
+				        //async: false,
+				        success: function(msg) {
+				            if (msg == "success") {
+				            	alert("주문완료");
+				            	window.location.reload();
+				            } else {
+				            	alert(msg);
+				            }
+				            //console.log(msg);
+				        }
+					   })
+			
+			}
+
+*/
+
 	</script>
 
     <title>나홀로 쇼핑몰</title>
